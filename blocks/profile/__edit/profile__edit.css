@@ -1,0 +1,10 @@
+.profile__edit {
+    display: flex;
+    flex-direction: row;
+}
+
+@media screen and (max-width:320px) {
+    .profile__edit {
+        justify-content: center;
+    }
+}
