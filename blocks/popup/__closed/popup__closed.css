@@ -3,6 +3,8 @@
     height: 32px;
     background-image: url(../../../image/Close__Icon.svg);
     background-repeat: no-repeat;
+    background-color: transparent;
+    background-position: center;
     background-color: rgba(0, 0, 0, 0);
     border: none;
     position: absolute;
@@ -10,6 +12,10 @@
     right: -40px;
     padding: 0;
     cursor: pointer;
+}
+
+.popup__closed:hover {
+    opacity: 0.6;
 }
 
 @media screen and (max-width:520px) {

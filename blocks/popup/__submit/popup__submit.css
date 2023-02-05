@@ -14,13 +14,14 @@
     padding: 0;
 }
 
+.popup__submit:hover {
+    opacity: 0.6;
+}
+
 @media screen and (max-width:520px) {
     .popup__submit {
-        max-width: 358px;
-        min-height: 50px;
         font-size: 14px;
         line-height: 17px;
-        text-align: center;
         margin: 45px 0 0 0;
     }
 }
