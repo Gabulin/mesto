@@ -3,9 +3,8 @@
     height: 32px;
     background-image: url(../../../image/Close__Icon.svg);
     background-repeat: no-repeat;
-    background-color: transparent;
     background-position: center;
-    background-color: rgba(0, 0, 0, 0);
+    background-color: black;
     border: none;
     position: absolute;
     top: -40px;
