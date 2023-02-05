@@ -3,9 +3,8 @@ const popup = main.querySelector('.popup');
 const profileButton = main.querySelector('.profile__button');
 const closePopupBtn = main.querySelector('.popup__closed');
 const formPopup = popup.querySelector('.popup__form');
-const nameInput = formPopup.querySelector('.popup__input-name');
-const jobInput = formPopup.querySelector('.popup__input-job');
-const popupSubmitSave = formPopup.querySelector('.popup__submit');
+const nameInput = document.getElementById('input__name');
+const jobInput = document.getElementById('input__job');
 const profileTitle = main.querySelector('.profile__title');
 const profileSubtitle = main.querySelector('.profile__subtitle');
 
