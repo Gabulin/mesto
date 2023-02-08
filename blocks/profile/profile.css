@@ -12,4 +12,12 @@
       align-items: center;
     }
   }
+
+  @media screen and (max-width: 320px) {
+    .profile {
+      padding: 0 19px 0 19px;
+      margin: 0 0 35px 0;
+
+    }
+  }
   
