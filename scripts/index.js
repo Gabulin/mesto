@@ -1,12 +1,12 @@
-const main = document.querySelector('.main')
-const popup = main.querySelector('.popup');
-const profileButton = main.querySelector('.profile__button');
-const closePopupBtn = main.querySelector('.popup__closed');
+const major = document.querySelector('.major')
+const popup = major.querySelector('.popup');
+const profileButton = major.querySelector('.profile__button');
+const closePopupBtn = major.querySelector('.popup__closed');
 const formPopup = popup.querySelector('.popup__form');
 const nameInput = document.getElementById('input__name');
 const jobInput = document.getElementById('input__job');
-const profileTitle = main.querySelector('.profile__title');
-const profileSubtitle = main.querySelector('.profile__subtitle');
+const profileTitle = major.querySelector('.profile__title');
+const profileSubtitle = major.querySelector('.profile__subtitle');
 
 function openPopup(){
     popup.classList.add('popup_opened')

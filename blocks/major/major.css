@@ -1,10 +1,10 @@
-.main {
+.major {
     margin: 45px auto 0 auto;
     max-width: 880px;
 }
 
 @media screen and (max-width: 320px) {
-    .main {
-        margin: 28px 19px 0 19px;
+    .major {
+        margin: 0;
     }
 }

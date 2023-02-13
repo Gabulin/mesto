@@ -21,11 +21,3 @@
         margin: 8px 0 0 19px;
     }
 }
-
-@media screen and (max-width:320px) {
-    .profile__button {
-        max-width: 18px;
-        max-height: 18px;
-        margin: 8px 0 0 19px;
-    }
-}

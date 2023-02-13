@@ -34,6 +34,7 @@
 
   @media screen and (max-width: 320px) {
     .profile__add-card {
-      width: 280px;
+      background-image: url(../../../image/plus__button-small.svg);
+      background-size: 280px 50px;
     }
   }
