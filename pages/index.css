@@ -38,3 +38,10 @@
 @import url(../blocks/popup/__submit/popup__submit.css);
 @import url(../blocks/popup/__closed/popup__closed.css);
 @import url(../blocks/popup/__form/popup__form.css);
+@import url(../blocks/popup/__image-open/popuo__image-open.css);
+
+@import url(../blocks/image/image.css);
+@import url(../blocks/image/__name/image__name.css);
+@import url(../blocks/image/__opened/image__opened.css);
+
+@import url(../blocks/element/__trash/element__trash.css);
