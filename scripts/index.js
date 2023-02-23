@@ -66,7 +66,7 @@ addCard.addEventListener('click', () => {
 
 const cards = document.querySelector('.elements');
 
-function newCard(name, link) {
+function addNewCard(name, link) {
     const cardTemplate = document.querySelector('#element').content;
 
     const card = cardTemplate.querySelector('.element').cloneNode(true);
@@ -88,22 +88,18 @@ function newCard(name, link) {
     });
 
     cardImage.addEventListener('click', () => {
-      getImage(name, link);
+      openPopup(popupOpenImage);
+      imgOpenFull.src = link;
+      imgOpenFullName.textContent = name;
     });
 
-    cards.prepend(card);
+    return card;
 }
 
 const popupFormCard = document.querySelector('.popup__form_card');
 const imgName = document.getElementById('input__image');
 const imgLink = document.getElementById('input__link');
 
-popupFormCard.addEventListener('submit',function(evt) {
-    evt.preventDefault();
-    newCard(imgName.value, imgLink.value);
-    imgName.value = '';
-    imgLink.value = '';
-})
 
 
  const initialCards = [
@@ -134,25 +130,33 @@ popupFormCard.addEventListener('submit',function(evt) {
   ]; 
 
 
-  initialCards.forEach(function (element) {
-    const cardAdd = newCard(element.name, element.link);
-});
+  initialCards.forEach(function(element){
+    const newCard = addNewCard(element.name, element.link); 
+    openCard(newCard, cards);
+  });
+
+  function openCard(card, cards) {
+    cards.prepend(card);
+  }
+
+function submitCardForm(evt) {
+  evt.preventDefault(); 
+    const newCard = addNewCard(imgName.value, imgLink.value);
+    openCard(newCard, cards);
+    closePopup(popupCard);
+    evt.target.reset();
+
+}
+
+
+
+popupFormCard.addEventListener('submit', submitCardForm);
 
 const popupOpenImage = document.querySelector('.popup_image-open');
 const closeImageBtn = popupOpenImage.querySelector('.popup__closed');
+const imgOpenFull = popupOpenImage.querySelector('.image__opened');
+const imgOpenFullName = popupOpenImage.querySelector('.image__name');
 
 closeImageBtn.addEventListener('click', () => {
   closePopup(popupOpenImage);
 });
-
-
-
-
-const image = popupOpenImage.querySelector('.image__opened');
-const imageName = popupOpenImage.querySelector('.image__name');
-
-function getImage(name, link) {
-  openPopup(popupOpenImage);
-  imageName.textContent = name;
-  image.src = link;
-}
