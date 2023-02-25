@@ -160,3 +160,4 @@ const imgOpenFullName = popupOpenImage.querySelector('.image__name');
 closeImageBtn.addEventListener('click', () => {
   closePopup(popupOpenImage);
 });
+
