@@ -11,13 +11,15 @@ const profileSubtitle = main.querySelector('.profile__subtitle');
 
 
  
-
+//Открытие и закрытие попапов
 function openPopup(popup){
     popup.classList.add('popup_opened');
+    document.addEventListener('keydown', closeByEscape);
 }
 
 function closePopup(popup) {
-    popup.classList.remove('popup_opened')
+    popup.classList.remove('popup_opened');
+    document.addEventListener('keydown', closeByEscape);
 };
 
 function profileInfo() {
@@ -52,6 +54,7 @@ const popupNewCard = document.querySelector('.profile__add-card');
 const addCard = popupCard.querySelector('.popup__submit');
 const closeCard = popupCard.querySelector('.popup__closed');
 
+
 popupNewCard.addEventListener('click', () => {
     openPopup(popupCard);
 });
@@ -66,6 +69,7 @@ addCard.addEventListener('click', () => {
 
 const cards = document.querySelector('.elements');
 
+//Создание карточки
 function addNewCard(name, link) {
     const cardTemplate = document.querySelector('#element').content;
 
@@ -100,8 +104,7 @@ const popupFormCard = document.querySelector('.popup__form_card');
 const imgName = document.getElementById('input__image');
 const imgLink = document.getElementById('input__link');
 
-
-
+//Стандартные карточки
  const initialCards = [
     {
       name: 'Архыз',
@@ -159,4 +162,19 @@ const imgOpenFullName = popupOpenImage.querySelector('.image__name');
 
 closeImageBtn.addEventListener('click', () => {
   closePopup(popupOpenImage);
+});
+
+// Закрытие по кнопке ESC
+function closeByEscape(evt){
+  if (evt.key === 'Escape'){
+      const openedPopup = document.querySelector('.popup_opened');
+      closePopup(openedPopup)
+  }};
+
+//Закрытие по оверлею
+document.addEventListener('click', function (evt) {
+  const openedPopup = document.querySelector('.popup_opened');    
+  if (evt.target.classList.contains('overlay')) {  
+    closePopup(openedPopup);   
+  }
 });
