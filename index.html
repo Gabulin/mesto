@@ -33,7 +33,7 @@
                 <button type="button" class="popup__closed"></button>
                 <h3 class="popup__text">Редактировать профиль</h3>
                
-                <form name="name" class="popup__form" novalidate>
+                <form name="name" class="popup__form popup__form_profile" name="popupFormProfile" novalidate>
                     
                     <input 
                     placeholder="ФИО" 
@@ -64,7 +64,7 @@
                <button type="button" class="popup__closed"></button>
                <h3 class="popup__text"> Новое место</h3>
                
-               <form name="name" class="popup__form popup__form_card" novalidate>
+               <form name="name" class="popup__form popup__form_card" name="popupFormCard" novalidate>
                 
                   <input 
                   placeholder="Название" 
@@ -94,7 +94,7 @@
          <div class="popup popup_image-open overlay">
             <div class="image">
                <button type="button" class="popup__closed"></button>
-               <img class="image__opened" alt="Фотография" src="#">
+               <img class="image__opened" alt="" src="#">
                <h3 class="image__name"></h3>
             </div>
          </div>
@@ -102,7 +102,7 @@
          <template id="element">
             <div class="element">
                 <button type="button" class="element__trash"></button>
-                <img class="element__image" alt="Фотография" src="#">
+                <img class="element__image" alt="" src="#">
                 <div class="element__info">
                     <h2 class="element__title"></h2>
                     <button type="button" class="element__button"></button>

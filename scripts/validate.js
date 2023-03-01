@@ -1,7 +1,5 @@
 // Валидация
 
-
-
 const showInputError = (setting, formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}`).nextElementSibling;
   console.log(errorElement)
@@ -45,6 +43,14 @@ const setEventListeners = (setting, formElement) => {
   const inputList = Array.from(formElement.querySelectorAll(setting.inputSelector));
   const buttonElement = formElement.querySelector(setting.submitButtonSelector);
   toggleButtonState(setting, inputList, buttonElement);
+
+  formElement.addEventListener('reset', () => {
+    setTimeout(() => {
+      toggleButtonState(setting, inputList, buttonElement);
+    }, 0); 
+  });
+
+
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
       checkInputValidity(setting, formElement, inputElement);
