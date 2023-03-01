@@ -34,7 +34,7 @@ function openPopupProfile() {
 profileButton.addEventListener('click', () => openPopupProfile(popupProfile));
 
 
-function handleFormSubmit(evt) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();
 
   profileTitle.textContent = nameInput.value
@@ -42,7 +42,7 @@ function handleFormSubmit(evt) {
 
   closePopup(popupProfile)
 }
-profileForm.addEventListener('submit', handleFormSubmit);
+profileForm.addEventListener('submit', handleProfileFormSubmit);
 
 const popupCard = document.querySelector('.popup_new-card');
 const popupNewCard = document.querySelector('.profile__add-card');
