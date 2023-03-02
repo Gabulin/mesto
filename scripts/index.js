@@ -17,7 +17,6 @@ function openPopup(popup) {
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  document.addEventListener('keydown', closeByEscape);
   document.removeEventListener('keydown', closeByEscape);
 };
 
@@ -55,7 +54,7 @@ popupNewCard.addEventListener('click', () => {
 
 
 addCard.addEventListener('click', () => {
-  closePopup(popupCard);
+  submitCardForm(evt);
 });
 
 const cards = document.querySelector('.elements');

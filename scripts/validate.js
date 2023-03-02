@@ -44,6 +44,8 @@ const setEventListeners = (setting, formElement) => {
   const buttonElement = formElement.querySelector(setting.submitButtonSelector);
   toggleButtonState(setting, inputList, buttonElement);
 
+  // За подсказку спасибо)
+  
   formElement.addEventListener('reset', () => {
     setTimeout(() => {
       toggleButtonState(setting, inputList, buttonElement);
