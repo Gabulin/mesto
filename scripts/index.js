@@ -52,11 +52,6 @@ popupNewCard.addEventListener('click', () => {
   openPopup(popupCard);
 });
 
-
-addCard.addEventListener('click', () => {
-  submitCardForm(evt);
-});
-
 const cards = document.querySelector('.elements');
 
 //Создание карточки
