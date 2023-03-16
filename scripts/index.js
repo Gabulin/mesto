@@ -1,3 +1,7 @@
+import { initialCards } from './initialCards.js';
+import { Card } from './сard.js';
+import { FormValidator } from './validate.js';
+
 const main = document.querySelector('.main')
 const profileButton = main.querySelector('.profile__button');
 const popupProfile = main.querySelector('.popup_profile');
@@ -54,7 +58,8 @@ popupNewCard.addEventListener('click', () => {
 
 const cards = document.querySelector('.elements');
 
-//Создание карточки
+//Код создания карточки оставлен про запас, после сдачи проекта будет удалён
+/*
 function addNewCard(name, link) {
   const cardTemplate = document.querySelector('#element').content;
 
@@ -84,59 +89,51 @@ function addNewCard(name, link) {
 
   return card;
 }
+*/
 
 const popupFormCard = document.querySelector('.popup__form_card');
 const imgName = document.getElementById('input__image');
 const imgLink = document.getElementById('input__link');
 
 //Стандартные карточки
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 
 
-initialCards.forEach(function (element) {
-  const newCard = addNewCard(element.name, element.link);
-  addDomCard(newCard, cards);
-});
 
-function addDomCard(card, cards) {
-  cards.prepend(card);
+initialCards.forEach(function (card) {
+  renderCard(card);
+}); 
+
+function renderCard(card) {
+  const newCard = new Card(card, '.element');
+  const node = newCard.createCard(openPopup);
+  cards.prepend(node);
 }
+
 
 function submitCardForm(evt) {
   evt.preventDefault();
-  const newCard = addNewCard(imgName.value, imgLink.value);
-  addDomCard(newCard, cards);
+  const newCard = { name: imgName.value, link: imgLink.value};
+  renderCard(newCard);
   closePopup(popupCard);
+  imgName.value = '';
+  imgLink.value = '';
   evt.target.reset();
 
 }
 
-
+function validate() {
+  const formList = Array.from(document.querySelectorAll('.popup__form'));
+  formList.forEach(function (formElement) {
+    const formValidator = new FormValidator({
+      inputSelector: '.popup__input',
+      submitButtonSelector: '.popup__submit',
+      inactiveButtonClass: 'popup__submit_disabled',
+      inputErrorClass: 'input__error',
+      errorClass: 'popup__input-error_active'
+    }, formElement);
+    formValidator.enableValidation();
+  });
+}
 
 popupFormCard.addEventListener('submit', submitCardForm);
 
@@ -144,8 +141,6 @@ const popupOpenImage = document.querySelector('.popup_image-open');
 const imgOpenFull = popupOpenImage.querySelector('.image__opened');
 const imgOpenFullName = popupOpenImage.querySelector('.image__name');
 
-
-// Закрытие по кнопке ESC
 function closeByEscape(evt) {
   if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened');
@@ -154,8 +149,6 @@ function closeByEscape(evt) {
 };
 
 const popups = document.querySelectorAll('.popup')
-
-// Спасибо за подсказку объединения крестика и оверлея
 
 popups.forEach((popup) => {
     popup.addEventListener('mousedown', (evt) => {
@@ -167,3 +160,5 @@ popups.forEach((popup) => {
         }
     })
 })
+
+validate();
