@@ -31,7 +31,7 @@ export class FormValidator {
   }
   
   _hasInvalidInput (inputList) {
-    return inputList.some((inputElement) => {
+    return inputList.some(function (inputElement) {
         return !inputElement.validity.valid;
     })
   }
@@ -45,6 +45,7 @@ export class FormValidator {
     buttonElement.removeAttribute('disabled');
   }
   }
+  
   
   _setEventListeners () {
     const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
