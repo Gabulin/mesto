@@ -59,10 +59,11 @@ popupNewCard.addEventListener('click', () => {
 });
 
 const cards = document.querySelector('.elements');
+const templateSelector = document.querySelector('#element').content.querySelector('.element')
 
 const popupFormCard = document.querySelector('.popup__form_card');
-const imgName = document.getElementById('input__image');
-const imgLink = document.getElementById('input__link');
+const imgName = document.querySelector('.popup__input_image');
+const imgLink = document.querySelector('.popup__input_link');
 
 
 function addInitialCards() {
@@ -74,7 +75,7 @@ function addInitialCards() {
 addInitialCards();;
 
 function renderCard(card) {
-  const newCard = new Card(card, '.element');
+  const newCard = new Card(card, templateSelector, '.element');
   return newCard.createCard();
 }
 

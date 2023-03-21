@@ -14,7 +14,8 @@ export class Card {
     }
 
     _getTemplate() {
-        return document.querySelector('#element').content.querySelector('.element').cloneNode(true);
+        const templateElement = this._templateSelector.cloneNode(true);
+        return templateElement;
     }
 
     _like(evt) {
