@@ -6,16 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesto</title>
-    <link rel="stylesheet" href="pages/index.css">
 </head>
 
 <body class="body">
     <header class="header">
-        <img class="header__logo" src="./image/logo.svg" alt="логотип">
+        <img class="header__logo" src="<%=require('./image/logo.svg')%>" alt="Логотип">
     </header>
     <main class="main">
         <section class="profile">
-            <img class="profile__avatar" src="./image/Jacques-Cousteau.png" alt="Жак-Ив Кусто">
+            <img class="profile__avatar" src="<%=require('./image/Jacques-Cousteau.png')%>" alt="Аватар">
             <div class="profile__info">
                 <div class="profile__edit">
                     <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -28,7 +27,7 @@
         <section class="elements">
            
         </section>
-        <div class="popup popup_profile overlay">
+        <div class="popup popup_profile overlay" id="popup_profile">
             <div class="popup__container">
                 <button type="button" class="popup__closed"></button>
                 <h3 class="popup__text">Редактировать профиль</h3>
@@ -61,7 +60,7 @@
         
             </div>
         </div>
-        <div class="popup popup_new-card overlay">
+        <div class="popup popup_new-card overlay" id="popup_new-card">
             <div class="popup__container">
                <button type="button" class="popup__closed"></button>
                <h3 class="popup__text"> Новое место</h3>
@@ -93,7 +92,7 @@
                </form>
             </div>
          </div>
-         <div class="popup popup_image-open overlay">
+         <div class="popup popup_image-open overlay" id="popup_image-open">
             <div class="image">
                <button type="button" class="popup__closed"></button>
                <img class="image__opened" alt="" src="#">
@@ -118,9 +117,7 @@
     </footer>
     
     <script type="module" src="./scripts/index.js"></script>
-    <script type="module" src="./scripts/сard.js"></script>
-    <script type="module" src="./scripts/initialCards.js"></script>
-    <script type="module" src="./scripts/validate.js"></script>
+
     
 
 </body>

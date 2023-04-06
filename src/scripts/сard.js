@@ -1,6 +1,3 @@
-//Сделал метод открытия карточки через constructor, но она не открывается, ошибок в консоли нет, в чём ошибка?
-import { openPopup } from "./index.js";
-
 export class Card {
 
     constructor(cardData, templateSelector, handleCardClick) {
@@ -27,19 +24,10 @@ export class Card {
         placeItem.remove();
     }
 
-    _handleImageClick(){
-        this._popupImage.src = this._link;
-        this._popupImage.alt = this._name;
-        this._popupSubtitle.textContent = this._name;
-        openPopup(this._popup);
-    } 
-
-
-
     _setEventListeners() {
         this._likeButton.addEventListener('click', this._like);
         this._trashButton.addEventListener('click', this._remove);
-        this._placeImage.addEventListener('click', () => this._handleImageClick());
+        this._placeImage.addEventListener('click', () => this._handleCardClick(this._name, this._link));
     }
     
 
