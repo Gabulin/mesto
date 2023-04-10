@@ -51,7 +51,7 @@ const userInfo = new UserInfo({
 
 const formEditProfile = new PopupWithForm(
   popupProfileSelector, {
-    handleFormSubmit: ({data}) => {
+    handleFormSubmit: (data) => {
       userInfo.setUserInfo(data);
       formEditProfile.close();
     }
@@ -82,14 +82,18 @@ const renderCard = (item) => {
   return newCard.createCard();
 };
 
-const handleCardAddFormSubmit = (evt, item) => {
-  evt.preventDefault();
-  cardsList.addItem(renderCard({ name: imgName.value, link: imgLink.value }));
-};
 
 const formAddCard = new PopupWithForm(
-  popupCardSelector,
-  handleCardAddFormSubmit
+  popupCardSelector, {
+    handleFormSubmit: (data) => {
+      cardsList.addItem(renderCard({
+        name: data.name,
+        link: data.link,
+        alt: data.name
+      }))
+      formAddCard.close();  
+  }
+}
 );
 formAddCard.setEventListeners();
 
