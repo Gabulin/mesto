@@ -9,19 +9,24 @@
 
   <body class="body">
     <header class="header">
+      <div class="profile__edit-avatar">
       <img
         class="header__logo"
         src="<%=require('./image/logo.svg')%>"
         alt="Логотип"
       />
+    </div>
     </header>
     <main class="main">
       <section class="profile">
+        <div class="profile__avatar">
         <img
-          class="profile__avatar"
+          class="profile__avatar_img"
           src="<%=require('./image/Jacques-Cousteau.png')%>"
           alt="Аватар"
         />
+        <button class="profile__avatar-edit" type="button"></button>
+      </div>
         <div class="profile__info">
           <div class="profile__edit">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -38,7 +43,7 @@
           <h3 class="popup__text">Редактировать профиль</h3>
 
           <form
-            name="popupFormProfile"
+            name="edit-form"
             class="popup__form popup__form_profile"
             novalidate
           >
@@ -76,7 +81,7 @@
           <h3 class="popup__text">Новое место</h3>
 
           <form
-            name="popupFormCard"
+            name="add-form"
             class="popup__form popup__form_card"
             novalidate
           >
@@ -116,13 +121,41 @@
         </div>
       </div>
 
-      <template id="element">
+      <div class="popup popup__avatar" id="popup-avatar">
+        <div class="popup__container">
+          <button class="popup__closed" type="button"></button>
+          <h2 class="popup__text">Обновить аватар</h2>
+          <form class="popup__form popup__form_avatar" id="avatar-form" name="avatar-edit-form" novalidate>
+              <input 
+              id="input-avatar"
+              type="url" 
+              class="popup__input popup__input_link" name="avatar" 
+              placeholder="Ссылка на картинку" 
+              required>
+              <span id="input-avatar-error" class="popup__input-error"></span>
+            <button type="submit" class="popup__submit">Сохранить</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="popup popup__confirm" id="popup-confirm">
+        <div class="popup__container">
+          <form class="popup__form">
+            <button class="popup__closed" type="button"></button>
+            <h2 class="popup__text popup__text_confirm">Вы уверены?</h2>
+            <button type="submit" class="popup__submit">Да</button>
+          </form>
+        </div>
+      </div>
+
+      <template class= "template_element" id="element">
         <div class="element">
           <button type="button" class="element__trash"></button>
           <img class="element__image" alt="" src="#" />
           <div class="element__info">
             <h2 class="element__title"></h2>
             <button type="button" class="element__button"></button>
+            <p class="card__heart-counter"></p>
           </div>
         </div>
       </template>

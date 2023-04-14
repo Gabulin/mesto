@@ -1,32 +1,47 @@
-import { Popup } from "./popup.js";
+import Popup from "./popup";
+export default class PopupWithForm extends Popup {
+    constructor(popupSelector, submitFormHandler) {
+      super(popupSelector);
+      this._submitFormHandler = submitFormHandler;
+      this._form = this._popupElement.querySelector('.popup__form');
+      this._inputList = this._popupElement.querySelectorAll('.popup__input');
+      this._submitButton = this._popupElement.querySelector('.popup__submit');
+      this._submitButtonText = this._submitButton.textContent;
+    }
 
-export class PopupWithForm extends Popup {
-  constructor(popupSelector, {handleFormSubmit}) {
-    super(popupSelector);
-    this._formElement = this._popupElement.querySelector(".popup__form");
-    this._handleFormSubmit = handleFormSubmit;
-  }
+    _getInputValues() {
+      this._formValues = {};
+      this._inputList.forEach(input => {
+        this._formValues[input.name] = input.value;
+      });
+      return this._formValues;
+    }
 
-  _getInputValues() {
-    const formValues = {};
-    this._inputList = this._popupElement.querySelectorAll(".popup__input");
-    this._inputList.forEach((input) => {
-      formValues[input.name] = input.value;
-    });
-    return formValues;
-  }
+    setInputValues(data) {
+        this._inputList.forEach(input => {
+            input.value = data[input.name]
+        })
+    }
 
-  setEventListeners() {
-    super.setEventListeners();
-    this._formElement.addEventListener("submit", (evt) => {
+    close() {
+        this._form.reset();
+        super.close();
+    }
+
+    setSavingProcessText() {
+      this._submitButton.textContent = 'Сохранение...';
+    }
+
+    returnSavingProcessText() {
+      this._submitButton.textContent = this._submitButtonText;
+    }
+
+    setEventListeners() {
+      this._form.addEventListener('submit', (evt) => {
         evt.preventDefault();
-        this._handleFormSubmit(this._getInputValues());
+        this._submitFormHandler(this._getInputValues());
         this.close();
       });
-  }
-
-  close() {
-    this._formElement.reset();
-    super.close();
-  }
+      super.setEventListeners();
+    }
 }
