@@ -5,6 +5,7 @@ export default class Card {
       this._name = this._card.name;
       this._link = this._card.link;
       this._templateSelector = templateSelector;
+      this._cardLikes = []
       
       this._userId = userId;
       this._cardId = ownerData.cardId; 
@@ -13,6 +14,7 @@ export default class Card {
       this._handleCardDelete = handleActions.handleCardDelete;
       this._handleCardLike = handleActions.handleCardLike;
       this._handleCardDeleteLike = handleActions.handleCardDeleteLike;
+      this.renderCardLike = this.renderCardLike.bind(this);
     }
 
     _getTemplate() {
@@ -26,6 +28,7 @@ export default class Card {
     }
 
     renderCardLike(card) {
+      console.log(this)
       this._cardLikes = card.likes;
       if (this._cardLikes.length === 0) {
         this.likeSelector.textContent = '0';
@@ -46,7 +49,7 @@ export default class Card {
       this.likeSelector = this._element.querySelector('.card__heart-counter');
       this._trash = this._element.querySelector(".element__trash");
       this._cardImg.src = this._link;
-      this._cardImg.alt = this._title;
+      this._cardImg.alt = this._name;
       this._element.querySelector(".element__title").textContent = this._name;
       this.renderCardLike(this._card);
       this._setEventListeners();
@@ -74,7 +77,7 @@ export default class Card {
 
       if (this._userId === this._ownerId) {
         this._trash.addEventListener('click', () => {
-          this._handleCardDelete(this, this._cardId);
+          this._handleCardDelete(this, this._cardId, this._card);
         })
       } else {
         this._trash.remove()
@@ -83,9 +86,9 @@ export default class Card {
 
     _handleLikeButton() {
       if (this._checkLikeCard()) {
-        this._handleCardDeleteLike(this._cardId)
+        this._handleCardDeleteLike(this._card._id, this.renderCardLike)
       } else {
-        this._handleCardLike(this._cardId)
+        this._handleCardLike(this._card._id, this.renderCardLike)
       }
     };
   }

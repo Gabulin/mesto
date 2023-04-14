@@ -63,13 +63,13 @@ const options = {
   errorClass: "popup__input-error_active",
 };
 
-const apiJoin = new Api(apiData);
+const api = new Api(apiData);
 let userId;
 
 //добавление карточки в секцию
-const submitAddCardFormHandler = ({title, image}) => {
+const submitAddCardFormHandler = (data) => {
   popupWithFormAddCard.setSavingProcessText();
-  apiJoin.addNewCard({name: title, link: image})
+  api.addNewCard(data)
   .then((card) => {
     cardList.addItem(createCard(card));
     popupWithFormAddCard.close();
@@ -84,9 +84,9 @@ const submitAddCardFormHandler = ({title, image}) => {
 
 const submitEditProfileFormHandler = (userProfileData) => {
   popupProfile.setSavingProcessText();
-  apiJoin.sendUserData(userProfileData)
+  api.sendUserData(userProfileData)
   .then(res => {
-    userInfo.setUserInfo({name: res.name, job: res.about});
+    userInfo.setUserInfo({name: res.name, job: res.job});
     popupProfile.close();
   })
   .catch((err) => {
@@ -99,7 +99,7 @@ const submitEditProfileFormHandler = (userProfileData) => {
 
 const submitEditAvatarFormHandler = (userProfileData) => {
   popupWithEditAvatar.setSavingProcessText();
-  apiJoin.sendAvatarData(userProfileData)
+  api.sendAvatarData(userProfileData)
   .then((res) => {
     userInfo.setUserAvatar(res.avatar);
     popupWithEditAvatar.close();
@@ -113,7 +113,7 @@ const submitEditAvatarFormHandler = (userProfileData) => {
   }
 
 const callbackConfirmation = (cardElement, cardId) => {
-  apiJoin.deleteCard(cardId)
+  api.deleteCard(cardId, cardElement)
   .then(() => {
     cardElement.deleteCard();
     popupConfirmation.close();
@@ -144,7 +144,7 @@ const cardList = new Section({renderer: (item) => {
   cardList.addItem(card)}
     }, '.elements');
 
-Promise.all([ apiJoin.getUserData(), apiJoin.getInitialCards() ])
+Promise.all([ api.getUserData(), api.getInitialCards() ])
   .then(([ userProfileData, cardObject ]) => {
     userId = userProfileData._id;
     userInfo.setUserInfo({ name: userProfileData.name, job: userProfileData.about });
@@ -193,20 +193,20 @@ const createCard = function (cardObject) {
     handleCardDelete: (cardElement, cardId) => {
       popupConfirmation.open(cardElement, cardId)},
 
-    handleCardLike: () => {
-      apiJoin.sendCardLike(_id)
+    handleCardLike: (_id, renderCardLike) => {
+      api.sendCardLike(_id)
       .then((res) => {
-        card.renderCardLike(res);
+        renderCardLike(res);
       })
       .catch((err) => {
         console.log(`При лайке карточки возникла ошибка: ${err}`)
       })
     },
 
-    handleCardDeleteLike: (_id) => {
-      apiJoin.deleteCardLike(_id)
+    handleCardDeleteLike: (_id, renderCardLike) => {
+      api.deleteCardLike(_id)
        .then((res) => {
-        card.renderCardLike(res);
+        renderCardLike(res);
        })
        .catch((err) => {
         console.log(`При дизлайке карточки возникла ошибка: ${err}`)
