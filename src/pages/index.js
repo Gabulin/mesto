@@ -44,8 +44,8 @@ const templateSelector = document
 const popupOpenImageSelector = "#popup_image-open";
 const popupProfSelector = "#popup_profile";
 const popupCardSelector = "#popup_new-card";
-const popupConfirmationSelector = ".popup__confirm";
-const popupEditAvatarSelector = ".popup__avatar";
+const popupConfirmationSelector = ".popup_confirm";
+const popupEditAvatarSelector = ".popup_avatar";
 
 //Api
 
@@ -150,7 +150,7 @@ popupNewCard.addEventListener("click", function () {
 const userInfo = new UserInfo({
   titleSelector: ".profile__title",
   jobSelector: ".profile__subtitle",
-  avatarSelector: ".profile__avatar_img",
+  avatarSelector: ".profile__avatar-img",
 });
 
 //Попап профиля
