@@ -2,7 +2,8 @@ import Popup from "./popup";
 export default class PopupConfirmation extends Popup {
     constructor(popupSelector, callbackConfirmation) {
       super(popupSelector);
-      this._submitButton = this._popupElement.querySelector('.popup__form');
+      this._formElement = this._popupElement.querySelector('.popup__form');
+      this._submitButton = this._popupElement.querySelector('.popup__submit');
       this._callbackConfirmation = callbackConfirmation;
     }
 
@@ -12,9 +13,16 @@ export default class PopupConfirmation extends Popup {
       super.open();
     }
 
+    setDeletingProcessText() {
+      this._submitButton.textContent = 'Удаление...';
+    }
+
+    returnDeletingProcessText() {
+      this._submitButton.textContent = this._submitButtonText;
+    }
 
     setEventListeners() {
-        this._submitButton.addEventListener('submit', (evt) => {
+        this._formElement.addEventListener('submit', (evt) => {
             evt.preventDefault();
             this._callbackConfirmation(this._cardObject, this._cardId);
             

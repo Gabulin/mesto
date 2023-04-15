@@ -1,7 +1,7 @@
 //класс создания карточки
 export default class Card {
-    constructor(cardObject, templateSelector, userId, ownerData, handleActions) {
-      this._card = cardObject;
+    constructor(cardData, templateSelector, userId, ownerData, handleActions) {
+      this._card = cardData;
       this._name = this._card.name;
       this._link = this._card.link;
       this._templateSelector = templateSelector;
@@ -18,13 +18,13 @@ export default class Card {
     }
 
     _getTemplate() {
-      const cardElement = document
+      const templateElement = document
       .querySelector(this._templateSelector) 
       .content
       .querySelector('.element')
       .cloneNode(true);
 
-    return cardElement;
+    return templateElement;
     }
 
     renderCardLike(card) {
@@ -44,13 +44,14 @@ export default class Card {
   
     generateCard() {
       this._element = this._getTemplate();
-      this._cardImg = this._element.querySelector(".element__image");
+      this._placeImage = this._element.querySelector(".element__image");
+      this._placeTitle = this._element.querySelector(".element__title");
       this._like = this._element.querySelector(".element__button");
-      this.likeSelector = this._element.querySelector('.card__heart-counter');
+      this.likeSelector = this._element.querySelector('.element__button-counter');
       this._trash = this._element.querySelector(".element__trash");
-      this._cardImg.src = this._link;
-      this._cardImg.alt = this._name;
-      this._element.querySelector(".element__title").textContent = this._name;
+      this._placeImage.src = this._link;
+      this._placeImage.alt = this._name;
+      this._placeTitle.textContent = this._name;
       this.renderCardLike(this._card);
       this._setEventListeners();
   
@@ -71,7 +72,7 @@ export default class Card {
         this._handleLikeButton();
       });
 
-      this._cardImg.addEventListener('click', () => {
+      this._placeImage.addEventListener('click', () => {
         this._handleCardClick({name: this._name, link: this._link});
       });
 

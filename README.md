@@ -7,4 +7,4 @@
 В дальнейшем планируется дополнить проект возможностью добавлять собственные фоторафии.
 Автор: Беспятов Андрей
 Ссылка:
-https://gabulin.github.io/mesto/index.html
+https://gabulin.github.io/mesto/

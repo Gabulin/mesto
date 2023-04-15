@@ -20,12 +20,12 @@
     <main class="main">
       <section class="profile">
         <div class="profile__avatar">
+          <button class="profile__avatar-edit" type="button"></button>
         <img
           class="profile__avatar_img"
           src="<%=require('./image/Jacques-Cousteau.png')%>"
           alt="Аватар"
         />
-        <button class="profile__avatar-edit" type="button"></button>
       </div>
         <div class="profile__info">
           <div class="profile__edit">
@@ -154,8 +154,11 @@
           <img class="element__image" alt="" src="#" />
           <div class="element__info">
             <h2 class="element__title"></h2>
-            <button type="button" class="element__button"></button>
-            <p class="card__heart-counter"></p>
+            <div class="element__like-container">
+              <button type="button" class="element__button"></button>
+            <span class="element__button-counter"></span>
+            </div>
+            
           </div>
         </div>
       </template>
@@ -163,7 +166,5 @@
     <footer class="footer">
       <p class="footer__text">© 2020 Mesto Russia</p>
     </footer>
-
-    <script type="module" src="./pages/index.js"></script>
   </body>
 </html>
