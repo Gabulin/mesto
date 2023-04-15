@@ -28,7 +28,6 @@ export default class Card {
     }
 
     renderCardLike(card) {
-      console.log(this)
       this._cardLikes = card.likes;
       if (this._cardLikes.length === 0) {
         this.likeSelector.textContent = '0';

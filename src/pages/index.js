@@ -1,12 +1,12 @@
-import Api from "../components/api";
+import Api from "../components/Api";
 import Card from "../components/Card";
-import FormValidator from "../components/formValidator";
-import Popup from "../components/popup";
+import FormValidator from "../components/FormValidator";
+import Popup from "../components/Popup";
 import PopupConfirmation from "../components/PopupConfirmation";
-import PopupWithForm from "../components/popupWithForm";
-import PopupWithImage from "../components/popupWithImage";
-import Section from "../components/section";
-import UserInfo from "../components/userInfo";
+import PopupWithForm from "../components/PopupWithForm";
+import PopupWithImage from "../components/PopupWithImage";
+import Section from "../components/Section";
+import UserInfo from "../components/UserInfo";
 import "./index.css";
 
 const main = document.querySelector(".main");
@@ -160,7 +160,6 @@ const submitEditProfileFormHandle = () => {
   api
     .sendUserData({ name: nameInput.value, job: jobInput.value })
     .then((res) => {
-      console.log(res);
       userInfo.setUserInfo({ name: res.name, job: res.about });
       formEditProfile.close();
     })
