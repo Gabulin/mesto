@@ -191,7 +191,6 @@ const submitEditAvatarFormHandle = (userProfileData) => {
   api
     .sendAvatarData(userProfileData)
     .then((res) => {
-      console.log(res);
       userInfo.setUserAvatar(res.avatar);
       formEditAvatar.close();
     })
